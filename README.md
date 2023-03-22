@@ -12,3 +12,32 @@ Nessa aula aprendemos:
   - testes de integração
   - testes ponta a ponta (_end-to-end_)
 
+## AULA 02. Escrevendo Features com Cucumber
+Sobre Assert
+Neste vídeo vimos uma particularidade interessante: Apesar de ser uma ferramenta de testes, o Cucumber não fornece nenhuma ferramenta para efetivamente verificar condições.
+
+Para isso devemos utilizar o Junit que traz inúmeros métodos interessantes de verificação, a partir da classe `org.junit.Assert`
+
+Essa classe fornece métodos estáticos muito simples que verificam se o parâmetro é verdadeiro, se há igualdade etc, como por exemplo:
+
+    Assert.assertEquals(Object expected, Object actual);
+
+Para saber mais sobre essa função você pode conferir a documentação oficial:
+
+https://junit.org/junit4/javadoc/4.8/org/junit/Assert.html
+
+e a documentação do Cucumber:
+
+https://cucumber.io/docs/cucumber/checking-assertions/
+
+Nessa aula aprendemos:
+
+- Como integrar a biblioteca _Cucumber_ na aplicação
+- _Cucumber_ pode ser inicializado a partir do junit4 (`@RunWith`)
+- os arquivos `.feature` são analisados pelo _Gherkin_ e _Cucumber_
+  - Gerkin é uma linguagem para definir os `.feature`
+  - _Cucumber_ gera e roda os passos (_steps_) associados ao `.feature`
+- dentro do `.feature` escrevemos a funcionalidade e os critérios de aceitação
+- um critério de aceitação segue a estrutura de um teste (passos ou _steps_)
+  - os passos são _Given-When-Then_ ou _Dado-Quando-Entao_
+- cada passo será implementado por um método anotado (_step_)
