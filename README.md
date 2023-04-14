@@ -116,3 +116,50 @@ O que aprendemos nessa aula:
 - não devemos usar Selenium diretamente nas classes de "steps" do Cucumber
 - o teste, mesmo com Selenium, deve sempre começar a partir de estado "limpo"
 - a melhor estratégia de buscar um elemento na interface é usar a ID
+
+## AULA 06. Tags e Contexto
+O Cucumber oferece uma alternativa ao uso das anotações como `@Dado` ou `@Quando`. Podemos implementar todos os steps de um cenários usando as famosas expressões lambda do Java8!
+
+Para tal, devemos definir uma dependência extra dentro do nosso `pom.xml`:
+
+    <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-java8</artifactId>
+        <version>${cucumber.version}</version>
+        <scope>test</scope>
+    </dependency>
+
+Uma vez feita, podemos rescrever a classe com os steps. Importante é implementar a interface `io.cucumber.java8.Pt` que possui para cada anotacao um método. Todos os métodos devem ser definidos dentro do construtor da classe. Vejo o exemplo:
+
+    public class LeilaoSteps implements io.cucumber.java8.Pt{
+    
+        private LoginPage loginPage;
+        private LeiloesPage leiloesPage;
+        private NovoLeilaoPage novoLeilaoPage;
+        private Browser browser;
+    
+        public LeilaoSteps() {
+            Dado("um usuario logado", () -> {
+                this.browser = new Browser();
+                browser.seed();
+                loginPage = browser.getLoginPage();
+                leiloesPage = loginPage.realizaLoginComoFulano();
+            });
+    
+            Quando("acessa a pagina de novo leilao", () -> {
+                novoLeilaoPage = this.leiloesPage.visitaPaginaParaCriarUmNovoLeilao();
+            });
+    
+            //resto omitido
+    }
+
+O codigo completo dessa classe pode ser encontrado no link abaixo:
+
+https://gist.github.com/steppat/64eae8b2005345c71f23b78941bf2a2e
+
+O que aprendemos nessa aula:
+
+- como usar de tags para marcar ou agrupar funcionalidades e cenários
+  - tags podemos ser escolhidas pela anotação `@CucumberOptions` ou na linha de comando
+- como definir um contexto (_Background_) no arquivo `.feature`
+  - um contexto define um passo comum entre todos os cenários dessa funcionalidade
