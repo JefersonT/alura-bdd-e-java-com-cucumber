@@ -13,6 +13,12 @@ Nessa aula aprendemos:
   - testes ponta a ponta (_end-to-end_)
 
 ## AULA 02. Escrevendo Features com Cucumber
+Como vimos na aula, os métodos de testes precisam ser semânticos. Em muitos casos, os testes são utilizados como a documentação do código no projeto.
+
+Existem algumas formas de nomeação, contudo, em muitos casos os times definem qual padrão utilizar. O importante é que o nome dos métodos sejam expressivos e que o padrão escolhido seja seguido.
+
+Caso queiram conhecer outras formas comuns de nomear os testes, neste link https://dzone.com/articles/7-popular-unit-test-naming de um artigo em inglês mostra algumas formas de nomeação.
+
 Sobre Assert
 Neste vídeo vimos uma particularidade interessante: Apesar de ser uma ferramenta de testes, o Cucumber não fornece nenhuma ferramenta para efetivamente verificar condições.
 
