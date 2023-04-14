@@ -100,3 +100,10 @@ O que aprendemos nessa aula:
 - Cucumber possui anotações para inicializar (`@Before`) e finalizar (`@After`) o cenários
   - os métodos anotados com `@Before` e `@After` são chamados de _Hooks_
   - cuidado, pois os _Hooks_ não são visíveis no arquivo `.feature`.
+
+## AULA 04. DataTables e Exemplos
+O que aprendemos nessa aula:
+
+- como usar `Exemplos` para alimentar o mesmo teste com dados diferentes
+- como usar `DataTables` para passar vários dados ao teste de uma vez só
+- usar o plugin do “Cucumber” no Eclipse
