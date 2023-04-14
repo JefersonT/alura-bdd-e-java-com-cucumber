@@ -107,3 +107,12 @@ O que aprendemos nessa aula:
 - como usar `Exemplos` para alimentar o mesmo teste com dados diferentes
 - como usar `DataTables` para passar vários dados ao teste de uma vez só
 - usar o plugin do “Cucumber” no Eclipse
+
+## AULA 05. Integração com Selenium
+O que aprendemos nessa aula:
+
+- que `PageObject` é um padrão de projeto para encapsular o acesso a uma pagina da aplicação
+  - todo o código especifico da interface com Selenium fica dentro do `PageObject`
+- não devemos usar Selenium diretamente nas classes de "steps" do Cucumber
+- o teste, mesmo com Selenium, deve sempre começar a partir de estado "limpo"
+- a melhor estratégia de buscar um elemento na interface é usar a ID
