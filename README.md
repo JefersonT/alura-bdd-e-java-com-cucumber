@@ -47,3 +47,56 @@ Nessa aula aprendemos:
 - um critério de aceitação segue a estrutura de um teste (passos ou _steps_)
   - os passos são _Given-When-Then_ ou _Dado-Quando-Entao_
 - cada passo será implementado por um método anotado (_step_)
+
+## AULA 03. Mais cenários e parâmetros
+### **Cucumber Expression**
+Já vimos como definir valores nos passos dentro do cenário, por exemplo:
+
+    Dado um lance de 10.0 reais do usuario "fulano"
+
+No código Java usamos uma expressão delimitado por `{}` para definir o tipo de parâmetro:
+
+    @Dado("um lance de {double} reais do usuario {string}")
+    public void um_lance(Double valor, String nomeUsuario) {
+    //codigo obtido
+
+Esse forma de definir os parâmetros se chama de **Cucumber Expression**.
+
+Obs: Lembrando que o nome do método não importa.
+
+### **Regex**
+Existe uma alternativa ao _Cucumber Expression_, os famosos **expressões regulares**. Em lugar da _Cucumber Expression_ podemos usar uma _regex_, e assim temos todo o poder dessas expressões para definir mais detalhe sobre o formato do parâmetro, por exemplo:
+
+    @Dado("um lance de {double} reais do usuario {string}")
+    public void um_lance_de_reais_do_usuario_fulano(Double valor, String nomeUsuario) {
+    //resto obtido
+
+Se torna:
+
+    @Dado("^um lance de (\\d+[.]\\d\\d?) reais do usuario (\\w+)$")
+    public void um_lance_de_reais_do_usuario_fulano(Double valor, String nomeUsuario) {
+      System.out.println(valor);
+      System.out.println(nomeUsuario);
+    }
+Repare que as **expressões regulares** tem a sua própria complexidade. Em alguns momentos ajudam, em outros fica mais complicado como é o caso da definicao de um número decimal `((\\d+[.]\\d\\d?))`.
+
+Se gostaria de dominar os regex, aconselhamos assistir o curso abaixo:
+
+https://cursos.alura.com.br/course/expressoes-regulares
+
+Vimos no vídeo as anotações `@After` e `@Before` usado em métodos nas classes que implementam os passos de um cenário.
+
+Esse métodos também são chamados de _Hooks_ (ganchos) que nada mais são métodos chamados automaticamente quando algum evento acontece. No caso, o evento é a execução de um cenário.
+
+Também existem os _hooks_ `@BeforeStep` e `@AfterStep`. Como o nome já indica, nessas anotações o evento é a execução de um _step_. Ou seja, cada vez que um métodos anotado com `@Dado` `@Quando` ou `@Entao` é chamado, será chamado o hook (antes ou depois, dependendo da anotação).
+
+Em geral, vale a pena alertar que devemos ter cuidado com o uso de hooks pois esses métodos não ficam visíveis para quem lê apenas o arquivo `.feature`.
+
+O que aprendemos nessa aula:
+
+- um arquivo `.feature` pode ter vários cenários e passos (_steps_)
+- os métodos associado aos passos são reaproveitados entre cenários
+  - podemos passar parâmetros do cenário ao método
+- Cucumber possui anotações para inicializar (`@Before`) e finalizar (`@After`) o cenários
+  - os métodos anotados com `@Before` e `@After` são chamados de _Hooks_
+  - cuidado, pois os _Hooks_ não são visíveis no arquivo `.feature`.
